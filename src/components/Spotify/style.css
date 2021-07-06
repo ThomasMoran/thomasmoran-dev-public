@@ -1,0 +1,66 @@
+.spotify__title {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-10);
+}
+
+.spotify__title > svg {
+  margin-right: var(--spacing-2);
+  margin-bottom: 4px;
+}
+
+.spotify__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* logo and record */
+.spotify__image {
+  position: relative;
+  margin: 0 var(--spacing-5);
+  padding-right: var(--spacing-12);
+}
+
+.spotify__logo {
+  height: 147px;
+  width: 147px;
+}
+
+.spotify__logo path {
+  fill: var(--color-spotify-subtle);
+}
+
+.spotify__record {
+  height: 110px;
+  width: 110px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+/* song name */
+.spotify__details h6 {
+  margin: var(--spacing-0);
+}
+
+.spotify__details p {
+  margin-top: var(--spacing-0);
+  margin-bottom: var(--spacing-3);
+}
+
+@media screen and (max-width: 600px) {
+  .spotify__main {
+    flex-direction: column;
+  }
+
+  .spotify__details {
+    text-align: center;
+  }
+
+  .spotify__image {
+    margin-bottom: var(--spacing-10);
+  }
+}

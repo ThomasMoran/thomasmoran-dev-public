@@ -1,0 +1,75 @@
+.record {
+  position: relative;
+  height: 110px;
+  width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--color-text);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.125), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(-48deg, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0) 55%),
+    linear-gradient(-42deg, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0) 55%),
+    radial-gradient(circle at top left, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 80%),
+    radial-gradient(circle at bottom right, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 80%);
+  animation: rotate 5s linear infinite;
+}
+
+.record::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+  border: 0.5px solid;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+.record--stopped {
+  animation: none;
+}
+
+.record__img {
+  height: 50%;
+  width: 50%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.record__center__black {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  height: 16px;
+  width: 16px;
+  background-color: var(--color-text);
+  border-radius: 50%;
+}
+
+.record__center__white {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  height: 6px;
+  width: 6px;
+  background-color: var(--color-white);
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateZ(360deg);
+  }
+}

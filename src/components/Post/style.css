@@ -1,0 +1,53 @@
+/*
+*  Note: Base tags such as typeography (h1, h2, ... p) and list (ol, ul, li)
+*  are styles in the main style.css file. This file only includes specific overrides.
+*/
+
+.post header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: var(--spacing-24);
+}
+
+.post__content {
+  margin-bottom: var(--spacing-24);
+}
+
+.post__header__date {
+  margin-bottom: var(--spacing-4);
+}
+
+.post__header__title {
+  margin: var(--spacing-0) var(--spacing-0) var(--spacing-5) var(--spacing-0);
+}
+
+.post__header__intro {
+  max-width: var(--maxWidth-xl);
+  margin-bottom: var(--spacing-8);
+}
+
+.post-nav ul {
+  margin: var(--spacing-0);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+}
+
+.post-nav a {
+  color: var(--color-link);
+}
+
+@media screen and (max-width: 600px) {
+  .post header {
+    margin-bottom: var(--spacing-20);
+  }
+
+  .post__header__title {
+    font-size: var(--fontSize-5);
+    margin: var(--spacing-0) var(--spacing-0) var(--spacing-5) var(--spacing-0);
+  }
+}

@@ -1,0 +1,40 @@
+.theme-button {
+  position: relative;
+  display: inline-flex;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  height: 50px;
+  width: 50px;
+  color: var(--color-button-text);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* all svgs */
+.theme-button svg {
+  display: block;
+  margin: auto;
+}
+
+/* only the colored section */
+.theme-button > svg {
+  transition: transform 0.4s var(--ease-overshoot);
+}
+
+.theme-button:hover > svg {
+  transform: scale(1.2);
+}
+
+.theme-button__icon-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
+
+.theme-button__icon {
+  opacity: 0.6;
+}

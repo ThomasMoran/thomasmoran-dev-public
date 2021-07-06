@@ -1,0 +1,29 @@
+.sw--pause line {
+  animation: none !important;
+}
+
+.sw line {
+  transform-origin: center;
+  stroke: var(--color-elev-12dp);
+  transition: stroke 1s var(--ease-simple);
+  animation: sound 0.4s linear infinite alternate;
+}
+
+.sw line.sw__full {
+  stroke: var(--color-spotify);
+}
+
+@media screen and (max-width: 600px) {
+  .sw > svg {
+    width: 100%;
+  }
+}
+
+@keyframes sound {
+  0% {
+    transform: scaleY(0.4);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

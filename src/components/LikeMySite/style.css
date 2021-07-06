@@ -1,0 +1,36 @@
+.git-like {
+  width: 300px;
+  display: grid;
+  grid-template-areas:
+    "title title button"
+    "desc desc desc";
+  row-gap: var(--spacing-4);
+}
+
+.git-like__title {
+  grid-area: title;
+  align-self: center;
+  margin: var(--spacing-0);
+}
+
+.git-like__button {
+  grid-area: button;
+  justify-self: end;
+}
+
+.git-like__button__icon {
+  fill: currentColor;
+  margin-left: var(--spacing-1);
+}
+
+.git-like__desc {
+  grid-area: desc;
+  margin: 0;
+  line-height: var(--lineHeight-normal);
+}
+
+@media screen and (max-width: 600px) {
+  .git-like {
+    width: 100%;
+  }
+}

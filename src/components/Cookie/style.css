@@ -1,0 +1,32 @@
+.cookie {
+  position: fixed;
+  bottom: var(--spacing-8);
+  left: var(--spacing-8);
+  width: 270px;
+  background: var(--color-elev-12dp);
+  padding: var(--spacing-10) var(--spacing-4) var(--spacing-3);
+  border-radius: var(--border-radius-large);
+}
+
+.cookie__icons {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cookie__icons svg:nth-of-type(2) {
+  margin: -6px 0 0 -10px;
+}
+
+.cookie > p {
+  margin-bottom: var(--spacing-6);
+  line-height: var(--lineHeight-tight);
+}
+
+.cookie__buttons {
+  display: flex;
+  gap: var(--spacing-2);
+}

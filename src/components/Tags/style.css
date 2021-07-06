@@ -1,0 +1,23 @@
+.tags {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+.tags__tag {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  padding: var(--spacing-0) var(--spacing-4);
+  font-size: var(--fontSize-n1);
+  font-weight: var(--fontWeight-bold);
+  border-radius: var(--border-radius-large);
+  background-color: var(--color-blue-callout);
+  color: var(--color-black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+}
+
+[data-theme="dark"] .tags__tag {
+  background-color: var(--color-yellow);
+}
