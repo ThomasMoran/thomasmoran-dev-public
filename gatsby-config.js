@@ -15,8 +15,8 @@ module.exports = {
       twitter: ``,
       linkedin: `https://www.linkedin.com/in/thomas-moran-052bb491/`,
       github: `https://github.com/ThomasMoran`,
-      repo: `https://github.com/ThomasMoran/thomasmoran-dot-dev`,
-      repoAPI: `https://api.github.com/repos/ThomasMoran/thomasmoran-dot-dev`,
+      repo: `https://github.com/ThomasMoran/thomasmoran-dev-public`,
+      repoAPI: `https://api.github.com/repos/ThomasMoran/thomasmoran-dev-public`,
     },
   },
   flags: {

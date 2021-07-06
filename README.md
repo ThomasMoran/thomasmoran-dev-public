@@ -27,7 +27,7 @@ Please feel free to look around or use it as a starter for you own blog. I only 
     Alternatively you can just download the zip.
 
     ```shell
-    git clone https://github.com/ThomasMoran/thomasmoran-dot-dev.git
+    git clone https://github.com/ThomasMoran/thomasmoran-dev-public.git
     ```
 
 1.  **Configure the services and create your .env file**
@@ -53,7 +53,7 @@ Please feel free to look around or use it as a starter for you own blog. I only 
     Start Gatsby in develop mode
 
     ```shell
-    cd thomasmoran-dot-dev
+    cd thomasmoran-dev-public
     gatsby develop
     ```
 

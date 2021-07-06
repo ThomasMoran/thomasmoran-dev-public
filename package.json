@@ -1,5 +1,5 @@
 {
-  "name": "thomasmoran-dot-dev",
+  "name": "thomasmoran-dev-public",
   "private": true,
   "description": "My personal website",
   "version": "0.1.0",
@@ -44,10 +44,10 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage": "https://github.com/ThomasMoran/thomasmoran-dot-dev#readme",
+  "homepage": "https://github.com/ThomasMoran/thomasmoran-dev-public#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ThomasMoran/thomasmoran-dot-dev.git"
+    "url": "git+https://github.com/ThomasMoran/thomasmoran-dev-public.git"
   },
   "scripts": {
     "build": "gatsby build",
