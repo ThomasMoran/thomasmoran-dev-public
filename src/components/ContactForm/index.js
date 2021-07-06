@@ -9,8 +9,7 @@ const ContactForm = () => {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [submitted, setSubmitted] = useState(false)
-
-  const loadTime = new Date().getTime()
+  const [loadTime] = useState(new Date().getTime())
 
   const variants = {
     submit: {
@@ -35,14 +34,9 @@ const ContactForm = () => {
   const submit = e => {
     e.preventDefault()
 
-    // stop bots
     const timeDiff = new Date().getTime() - loadTime
 
-    if (timeDiff < 5000) {
-      resetForm()
-    }
-
-    if (name && email && message) {
+    if (timeDiff > 3500 && name && email && message) {
       const formData = { 'form-name': 'contact', name, email, message }
 
       fetch('/', {
@@ -52,9 +46,9 @@ const ContactForm = () => {
       })
         .then()
         .catch(error => alert(error))
-
-      resetForm()
     }
+
+    resetForm()
   }
 
   return (
