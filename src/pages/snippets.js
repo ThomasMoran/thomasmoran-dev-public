@@ -2,13 +2,13 @@ import { graphql } from 'gatsby'
 import React, { useState } from 'react'
 
 import Bio from '../components/Bio'
-import CodeSnippitsList from '../components/CodeSnippitsList'
+import CodeSnippetsList from '../components/CodeSnippetsList'
 import SearchBar from '../components/SearchBar'
 import Title from '../components/Title'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
 
-const SnippitsIndex = ({ data, location }) => {
+const SnippetsIndex = ({ data, location }) => {
   // Reformat data so that we can easily use search results.
   // This saves the need to filter data by search result ids.
   // Would need changing if the blog list contained more information.
@@ -33,8 +33,8 @@ const SnippitsIndex = ({ data, location }) => {
 
   return (
     <Layout location={location}>
-      <Seo title="All Snippits" />
-      <Title title="Code Snippits">
+      <Seo title="All Snippets" />
+      <Title title="Code Snippets">
         <p>
           Browse through my posts or simply search by title or keyword{' '}
           <span role="img" aria-label="stars emoji">
@@ -43,14 +43,14 @@ const SnippitsIndex = ({ data, location }) => {
           .
         </p>
       </Title>
-      <SearchBar searchIndex={data.siteSearchIndex.index} setPosts={handleDisplayedPosts} docType="snippit" />
-      <CodeSnippitsList snippits={displayedPosts} fullList />
+      <SearchBar searchIndex={data.siteSearchIndex.index} setPosts={handleDisplayedPosts} docType="snippet" />
+      <CodeSnippetsList snippets={displayedPosts} fullList />
       <Bio />
     </Layout>
   )
 }
 
-export default SnippitsIndex
+export default SnippetsIndex
 
 export const pageQuery = graphql`
   query SnipptsListQuery {
@@ -62,7 +62,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    blog: allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, filter: { fileAbsolutePath: { regex: "/snippits/" } }) {
+    blog: allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, filter: { fileAbsolutePath: { regex: "/snippets/" } }) {
       nodes {
         id
         excerpt(pruneLength: 200)

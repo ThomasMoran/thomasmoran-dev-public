@@ -86,7 +86,7 @@ I have kept the file structure largly the same as the gatsby-starter project. Al
     ├── package.json
     └── README.md
 
-1. **`/content`**: Markdown files for blogposts and snippits. Both sections use the same setup and tech but I wanted them separated. You can use this to extend to more sections/post-types. Extending will requrire some tweaking in the gatsby-node.js file which is used during build to convert these files to pages.
+1. **`/content`**: Markdown files for blogposts and snippets. Both sections use the same setup and tech but I wanted them separated. You can use this to extend to more sections/post-types. Extending will requrire some tweaking in the gatsby-node.js file which is used during build to convert these files to pages.
 
 2. **`/src/api`**: The serverless functions are placed in here. They are build using Gatsby Functions (https://www.gatsbyjs.com/docs/reference/functions/) and run via Netlify Functions using the @netlify/plugin-gatsby plugin. The configuration file needed for this is ./netlify.toml
 

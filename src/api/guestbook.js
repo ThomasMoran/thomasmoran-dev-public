@@ -1,6 +1,14 @@
 import S3 from 'aws-sdk/clients/s3'
+import Cors from 'cors'
 import faunadb from 'faunadb'
 import { v4 as uuidv4 } from 'uuid'
+
+import { runMiddleware } from './utils'
+
+const cors = Cors({
+  methods: ['GET', 'POST'],
+  origin: 'https://www.thomasmoran.dev',
+})
 
 // configure fauna
 const q = faunadb.query
@@ -9,6 +17,9 @@ const client = new faunadb.Client({
 })
 
 const handler = async (req, res) => {
+  // Run Cors middleware and handle errors.
+  await runMiddleware(req, res, cors)
+
   try {
     if (req.method === 'POST') {
       const name = req.body.name
@@ -22,17 +33,16 @@ const handler = async (req, res) => {
         client
           .query(q.Create(q.Collection(process.env.FAUNA_COLLECTION), { data: { status: 'pending', name, imageURL: imageAwsURL } }))
           .then(() => {
-            res.sendStatus(200) // success
+            res.status(200).send('Success') // success
           })
           .catch(err => {
-            res.sendStatus(500) // internal server error
+            res.status(500).send('Error: 500') // internal server error
             console.error('Error:', err) // output for netlify log
           })
         return
       }
 
-      res.sendStatus(400) // bad request
-      return
+      return res.status(400).send('Error: 400') // bad request
     } else if (req.method === 'GET') {
       // handle GET request
       // fetch all from database in random order
@@ -51,14 +61,14 @@ const handler = async (req, res) => {
           res.status(200).json(jsonData) // success
         })
         .catch(err => {
-          res.sendStatus(500) // internal server error
+          res.status(500).send('Error: 500') // internal server error
           console.error('Error:', err) // output for netlify log
         })
 
       return
     }
 
-    res.sendStatus(405) // method not allowed response
+    res.status(405).send('Error: 405') // method not allowed response
   } catch (err) {
     res.status(500).json({ msg: err.message })
     console.error(err) // output for netlify log

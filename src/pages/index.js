@@ -1,9 +1,8 @@
 import { graphql, Link } from 'gatsby'
 import React from 'react'
 
-import Bio from '../components/Bio'
 import BlogList from '../components/BlogList'
-import CodeSnippitsList from '../components/CodeSnippitsList'
+import CodeSnippetsList from '../components/CodeSnippetsList'
 import ContactForm from '../components/ContactForm'
 import Intro from '../components/Intro'
 import Spotify from '../components/Spotify'
@@ -22,7 +21,7 @@ const Home = ({ data, location }) => {
       slug: node.fields.slug,
     }
   })
-  const snippits = data.snippits.nodes.map(node => {
+  const snippets = data.snippets.nodes.map(node => {
     return {
       id: node.id,
       title: node.frontmatter.title,
@@ -42,17 +41,17 @@ const Home = ({ data, location }) => {
         </p>
       </Title>
       <BlogList posts={posts} />
-      <Title title="Code Snippits">
+      <Title title="Code Snippets">
         <p>
           I like to post any useful bits of code I come across in my day-to-day{' '}
           <span role="img" aria-label="stars emoji">
             ✨
           </span>
           . <br />
-          Check out the full list of snippits <Link to="/snippits">here</Link>.
+          Check out the full list of snippets <Link to="/snippets">here</Link>.
         </p>
       </Title>
-      <CodeSnippitsList snippits={snippits} />
+      <CodeSnippetsList snippets={snippets} />
       <ContactForm />
       <Spotify />
     </Layout>
@@ -82,9 +81,9 @@ export const pageQuery = graphql`
         }
       }
     }
-    snippits: allMarkdownRemark(
+    snippets: allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { fileAbsolutePath: { regex: "/snippits/" } }
+      filter: { fileAbsolutePath: { regex: "/snippets/" } }
       limit: 5
     ) {
       nodes {

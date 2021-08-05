@@ -5,8 +5,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   // Define a templates for posts
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
-  const snippitPost = path.resolve(`./src/templates/snippit-post.js`)
+  const blogPostTemplate = path.resolve(`./src/templates/blog-post.js`)
+  const snippetPostTemplate = path.resolve(`./src/templates/snippet-post.js`)
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -32,22 +32,40 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const snippets = result.data.allMarkdownRemark.nodes.filter(post => post.frontmatter.type === 'snippet')
+  const blogs = result.data.allMarkdownRemark.nodes.filter(post => post.frontmatter.type === 'blog')
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+  if (snippets.length > 0) {
+    snippets.forEach((snippet, index) => {
+      const previousPostId = index === 0 ? null : snippets[index - 1].id
+      const nextPostId = index === snippets.length - 1 ? null : snippets[index + 1].id
 
       createPage({
-        path: post.fields.slug,
-        component: post.frontmatter.type === 'snippit' ? snippitPost : blogPost,
+        path: snippet.fields.slug,
+        component: snippetPostTemplate,
         context: {
-          id: post.id,
+          id: snippet.id,
+          previousPostId,
+          nextPostId,
+        },
+      })
+    })
+  }
+
+  if (blogs.length > 0) {
+    blogs.forEach((blog, index) => {
+      const previousPostId = index === 0 ? null : blogs[index - 1].id
+      const nextPostId = index === blogs.length - 1 ? null : blogs[index + 1].id
+
+      createPage({
+        path: blog.fields.slug,
+        component: blogPostTemplate,
+        context: {
+          id: blog.id,
           previousPostId,
           nextPostId,
         },
@@ -62,11 +80,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode })
 
-    if (node.frontmatter.type === 'snippit') {
+    if (node.frontmatter.type === 'snippet') {
       createNodeField({
         name: `slug`,
         node,
-        value: `/snippits${value}`,
+        value: `/snippets${value}`,
       })
     } else {
       createNodeField({
@@ -110,13 +128,15 @@ exports.createSchemaCustomization = ({ actions }) => {
     type MarkdownRemark implements Node {
       frontmatter: Frontmatter
       fields: Fields
+      tableOfContents: String
     }
 
     type Frontmatter {
+      date: Date @dateformat
+      lastModified: Date @dateformat
       title: String
       intro: String
       description: String
-      date: Date @dateformat
       tags: [String]
       type: String
     }

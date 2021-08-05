@@ -10,7 +10,7 @@ module.exports = {
       summary: ``,
     },
     description: `Thomas Moran - I’m a Software Developer and Engineering advocate current working for Deloitte Digital`,
-    siteUrl: `https://thomasmoran.dev`,
+    siteUrl: `https://www.thomasmoran.dev`,
     social: {
       twitter: ``,
       linkedin: `https://www.linkedin.com/in/thomas-moran-052bb491/`,
@@ -23,6 +23,52 @@ module.exports = {
     FUNCTIONS: true,
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allSitePage {
+            nodes {
+              path
+            }
+          }
+          allMarkdownRemark {
+            nodes {
+              frontmatter {
+                lastModified
+              }
+              fields {
+                slug
+              }
+            }
+          }
+        }`,
+        resolvePages: ({ allSitePage, allMarkdownRemark }) => {
+          const remarkNodeMap = allMarkdownRemark.nodes.reduce((acc, node) => {
+            const { slug } = node.fields
+            acc[slug] = node
+            return acc
+          }, {})
+
+          return allSitePage.nodes.map(page => {
+            return { ...page, ...remarkNodeMap[page.path] }
+          })
+        },
+        serialize: ({ path, frontmatter }) => {
+          const lastMod = frontmatter ? frontmatter.lastModified : null
+          return {
+            url: path,
+            lastmod: lastMod,
+          }
+        },
+      },
+    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -34,8 +80,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/snippits`,
-        name: `snippits`,
+        path: `${__dirname}/content/snippets`,
+        name: `snippets`,
       },
     },
     {

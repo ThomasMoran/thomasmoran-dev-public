@@ -26,7 +26,7 @@ const SearchBar = ({ searchIndex, setPosts, docType = 'blog' }) => {
       .search(input, { expand: true })
       // Map over each ID and return the full document
       .map(({ ref }) => index.documentStore.getDoc(ref))
-      // Filter out snippit results
+      // Filter out snippet results
       .filter(doc => doc.type === docType)
     setQuery(input)
     setPosts(input, res)

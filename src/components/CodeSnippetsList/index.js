@@ -7,7 +7,7 @@ import Icon from '../Icon'
 import SearchEmptyState from '../SearchEmptyState'
 import './styles.css'
 
-const CodeSnippitsList = ({ snippits, fullList = false }) => {
+const CodeSnippetsList = ({ snippets, fullList = false }) => {
   const buttonAnimationLeft = {
     rest: {
       x: 0,
@@ -34,19 +34,19 @@ const CodeSnippitsList = ({ snippits, fullList = false }) => {
     },
   }
 
-  if (snippits.length === 0) {
+  if (snippets.length === 0) {
     return <SearchEmptyState />
   }
 
   return (
-    <div className={`snippits-list${fullList ? ' snippits-list--full' : ''}`}>
-      <div className="snippits-list__posts">
-        {snippits.map(snippit => (
-          <Link key={snippit.slug} to={snippit.slug} className="snippits-list__post">
+    <div className={`snippets-list${fullList ? ' snippets-list--full' : ''}`}>
+      <div className="snippets-list__posts">
+        {snippets.map(snippet => (
+          <Link key={snippet.slug} to={snippet.slug} className="snippets-list__post">
             <article>
-              <h1 className="snippits-list__post__title">{snippit.title}</h1>
-              <div className="snippits-list__post__icons">{snippit.tags && snippit.tags.map(tag => <DevIcon key={tag} name={tag} />)}</div>
-              <div className="snippits-list__post__arrow">
+              <h1 className="snippets-list__post__title">{snippet.title}</h1>
+              <div className="snippets-list__post__icons">{snippet.tags && snippet.tags.map(tag => <DevIcon key={tag} name={tag} />)}</div>
+              <div className="snippets-list__post__arrow">
                 <Icon name="ArrowRight" size="xsmall" />
               </div>
             </article>
@@ -54,11 +54,11 @@ const CodeSnippitsList = ({ snippits, fullList = false }) => {
         ))}
 
         {!fullList && (
-          <Link className="snippits-list__view-all--wrapper" to={'/snippits'}>
-            <motion.div className="snippits-list__view-all" initial="rest" animate="rest" whileHover="hover">
+          <Link className="snippets-list__view-all--wrapper" to={'/snippets'}>
+            <motion.div className="snippets-list__view-all" initial="rest" animate="rest" whileHover="hover">
               <motion.span variants={buttonAnimationLeft} />
               <motion.span variants={buttonAnimation} />
-              View all my snippits
+              View all my snippets
             </motion.div>
           </Link>
         )}
@@ -67,4 +67,4 @@ const CodeSnippitsList = ({ snippits, fullList = false }) => {
   )
 }
 
-export default CodeSnippitsList
+export default CodeSnippetsList

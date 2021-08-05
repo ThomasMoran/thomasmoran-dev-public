@@ -1,5 +1,13 @@
+import Cors from 'cors'
 import fetch from 'node-fetch'
 import querystring from 'querystring'
+
+import { runMiddleware } from './utils'
+
+const cors = Cors({
+  methods: ['GET'],
+  origin: 'https://www.thomasmoran.dev',
+})
 
 const client_id = process.env.SPOTIFY_CLIENT_ID
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET
@@ -36,12 +44,18 @@ const getNowPlaying = async () => {
 }
 
 const handler = async (req, res) => {
+  // Run Cors middleware and handle errors.
+  await runMiddleware(req, res, cors)
+
   try {
+    if (req.method !== 'GET') {
+      return res.status(405).send('Error: 405') // method not allowed response
+    }
+
     const response = await getNowPlaying()
 
     if (response.status === 204 || response.status > 400) {
-      res.status(200).json({ isPlaying: false })
-      return
+      return res.status(200).json({ isPlaying: false })
     }
 
     const song = await response.json()

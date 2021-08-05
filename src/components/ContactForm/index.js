@@ -89,6 +89,7 @@ const ContactForm = () => {
           className="contact__input contact__input--ta"
           type="text"
           name="message"
+          required
           placeholder="Message"
           value={message}
           onChange={e => setMessage(e.target.value)}

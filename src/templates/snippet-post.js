@@ -5,7 +5,7 @@ import Post from '../components/Post'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
 
-const SnippitPostTemplate = ({ data, location }) => {
+const SnippetPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const { previous, next } = data
 
@@ -17,16 +17,16 @@ const SnippitPostTemplate = ({ data, location }) => {
   )
 }
 
-export default SnippitPostTemplate
+export default SnippetPostTemplate
 
 export const pageQuery = graphql`
-  query SnippitPostBySlug($id: String!, $previousPostId: String, $nextPostId: String) {
+  query SnippetPostBySlug($id: String!, $previousPostId: String, $nextPostId: String) {
     site {
       siteMetadata {
         title
       }
     }
-    markdownRemark(id: { eq: $id }, fileAbsolutePath: { regex: "/snippit/" }) {
+    markdownRemark(id: { eq: $id }, fileAbsolutePath: { regex: "/snippet/" }) {
       id
       html
       frontmatter {
@@ -37,7 +37,7 @@ export const pageQuery = graphql`
         tags
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }, fileAbsolutePath: { regex: "/snippit/" }) {
+    previous: markdownRemark(id: { eq: $previousPostId }, fileAbsolutePath: { regex: "/snippet/" }) {
       fields {
         slug
       }
@@ -45,7 +45,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }, fileAbsolutePath: { regex: "/snippit/" }) {
+    next: markdownRemark(id: { eq: $nextPostId }, fileAbsolutePath: { regex: "/snippet/" }) {
       fields {
         slug
       }
